@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="user"
+            type="com.bkenji.ghsearch.model.User" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:id="@+id/profile_image"
+            app:imageUrl="@{user.profileUrl}"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_name"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@+id/profile_image"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="4dp"
+            android:textSize="18sp"
+            android:text="@{user.name}"/>
+    </RelativeLayout>
+
+</layout>

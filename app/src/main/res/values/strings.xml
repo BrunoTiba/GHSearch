@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GHSearch</string>
+    <string name="activity_welcome">Welcome to GHSearch! You can search for Github users and repositories by selecting the options below.</string>
+    <string name="button_search_users">Search Users</string>
+    <string name="button_search_repositories">Search Repositories</string>
+    <string name="no_results_found">No results found</string>
+</resources>

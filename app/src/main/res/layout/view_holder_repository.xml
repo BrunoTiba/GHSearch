@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="repository"
+            type="com.bkenji.ghsearch.model.Repository" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/repository_item"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/repository_name"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="4dp"
+            android:textSize="18sp"
+            android:text="@{repository.name}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginStart="4dp"
+            android:id="@+id/owner"
+            android:layout_below="@+id/repository_name"
+            android:text="@{repository.owner.name}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginStart="4dp"
+            android:id="@+id/language"
+            android:layout_below="@+id/owner"
+            android:visibility="@{repository.language != null ? View.VISIBLE : View.GONE}"
+            android:text="@{repository.language}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginStart="4dp"
+            android:id="@+id/description"
+            android:layout_below="@+id/language"
+            android:maxLines="2"
+            android:text="@{repository.description}"/>
+
+    </RelativeLayout>
+
+</layout>

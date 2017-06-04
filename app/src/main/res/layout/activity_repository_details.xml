@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="repository"
+            type="com.bkenji.ghsearch.model.Repository" />
+        <variable
+            name="loading"
+            type="Boolean" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/repository_name"
+            android:layout_centerHorizontal="true"
+            android:textSize="22sp"
+            android:layout_margin="12dp"
+            android:textColor="@android:color/black"
+            android:text="@{repository.name}"/>
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_below="@id/repository_name"
+            android:id="@+id/owner_avatar"
+            android:layout_margin="4dp"
+            app:imageUrl="@{repository.owner.profileUrl}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/owner"
+            android:layout_below="@id/repository_name"
+            android:layout_toEndOf="@+id/owner_avatar"
+            android:layout_margin="4dp"
+            android:text="@{`Owner: ` + repository.owner.name}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/language"
+            android:layout_below="@id/owner"
+            android:layout_toEndOf="@+id/owner_avatar"
+            android:layout_margin="4dp"
+            android:visibility="@{repository.language == null ? View.GONE : View.VISIBLE}"
+            android:text="@{`Language:` + repository.language}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/description"
+            android:layout_below="@id/language"
+            android:layout_toEndOf="@+id/owner_avatar"
+            android:layout_margin="4dp"
+            android:text="@{repository.description}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/contributors"
+            android:layout_below="@id/owner_avatar"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            android:text="Contributors"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycler"
+            android:layout_below="@+id/contributors"
+            android:layout_marginTop="6dp"
+            android:visibility="@{loading ? View.GONE : View.VISIBLE}"
+            android:scrollbars="vertical"/>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/contributors"
+            android:layout_marginTop="6dp"
+            android:visibility="@{loading ? View.VISIBLE : View.GONE}"/>
+    </RelativeLayout>
+
+</layout>
