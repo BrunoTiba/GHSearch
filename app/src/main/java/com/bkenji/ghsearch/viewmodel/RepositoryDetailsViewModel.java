@@ -24,6 +24,7 @@ public class RepositoryDetailsViewModel {
         mBinding = binding;
         mAdapter = adapter;
         mBinding.setLoading(true);
+
         GitHubProvider.getGithubService()
                 .getContributors(mBinding.getRepository().owner.name, mBinding.getRepository().name)
                 .enqueue(new Callback<List<User>>() {
@@ -40,5 +41,9 @@ public class RepositoryDetailsViewModel {
                 mBinding.setLoading(false);
             }
         });
+    }
+
+    public void onDestroy() {
+        mAdapter.onDestroy();
     }
 }

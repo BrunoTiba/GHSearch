@@ -34,6 +34,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void onDestroy() {
+        mContext = null;
+    }
+
     @Override
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final LayoutInflater inflater = LayoutInflater.from(mContext);

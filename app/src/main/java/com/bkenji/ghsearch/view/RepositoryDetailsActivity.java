@@ -36,4 +36,10 @@ public class RepositoryDetailsActivity extends AppCompatActivity {
         binding.setRepository(repository);
         mViewModel = new RepositoryDetailsViewModel(binding, adapter);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mViewModel.onDestroy();
+    }
 }

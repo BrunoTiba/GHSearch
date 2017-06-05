@@ -34,4 +34,10 @@ public class UserSearchActivity extends AppCompatActivity {
         binding.search.setQueryHint("Search users");
         binding.search.setIconifiedByDefault(false);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mViewModel.onDestroy();
+    }
 }

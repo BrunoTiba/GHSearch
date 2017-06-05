@@ -25,6 +25,10 @@ public class UserSearchViewModel implements SearchView.OnQueryTextListener{
         mAdapter = adapter;
     }
 
+    public void onDestroy() {
+        mAdapter.onDestroy();
+    }
+
     @Override
     public boolean onQueryTextSubmit(String query) {
         mBinding.setLoading(true);

@@ -34,4 +34,10 @@ public class RepositorySearchActivity extends AppCompatActivity {
         binding.search.setQueryHint("Search repositories");
         binding.search.setIconifiedByDefault(false);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mViewModel.onDestroy();
+    }
 }

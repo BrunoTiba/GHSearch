@@ -42,6 +42,11 @@ public class RepositorySearchListAdapter extends RecyclerView.Adapter<Repository
         mListener = listener;
     }
 
+    public void onDestroy() {
+        mContext = null;
+        mListener = null;
+    }
+
     @Override
     public RepositoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final LayoutInflater inflater = LayoutInflater.from(mContext);

@@ -35,6 +35,12 @@ public class RepositorySearchViewModel implements SearchView.OnQueryTextListener
         mAdapter.setListener(this);
     }
 
+    public void onDestroy() {
+        mContext = null;
+        mAdapter.onDestroy();
+        mAdapter = null;
+    }
+
     @Override
     public boolean onQueryTextSubmit(String query) {
         mBinding.setLoading(true);
@@ -45,7 +51,7 @@ public class RepositorySearchViewModel implements SearchView.OnQueryTextListener
             public void onResponse(Call<RepositorySearch> call,
                                    Response<RepositorySearch> response) {
                 mBinding.setLoading(false);
-                if(response.isSuccessful()) {
+                if(response.isSuccessful() && mAdapter != null) {
                     mAdapter.updateRepositories(response.body().repositories);
                     mBinding.setEmptyData(mAdapter.getItemCount() == 0);
                 }
@@ -66,8 +72,10 @@ public class RepositorySearchViewModel implements SearchView.OnQueryTextListener
 
     @Override
     public void onRepositorySelected(Repository repository) {
-        final Intent intent = new Intent(mContext, RepositoryDetailsActivity.class);
-        intent.putExtra(RepositoryDetailsActivity.REPOSITORY_EXTRA, repository);
-        mContext.startActivity(intent);
+        if (mContext != null) {
+            final Intent intent = new Intent(mContext, RepositoryDetailsActivity.class);
+            intent.putExtra(RepositoryDetailsActivity.REPOSITORY_EXTRA, repository);
+            mContext.startActivity(intent);
+        }
     }
 }
